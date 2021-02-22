@@ -11,7 +11,7 @@ function Grid(props) {
                                  src={item.img}/>
                         </a>
                         <div className="px-6 py-4">
-                            <div className="font-bold text-xl mb-2">{item.title}</div>
+                            <div className="font-bold text-xl mb-2"><a href={item.link} target="_blank">{item.title}</a></div>
                             <p className="text-gray-700 text-base">
                                 {item.description}
                             </p>
