@@ -1,15 +1,32 @@
-import { useRef, useState } from 'react';
-import "./NavBar.css";
+import './nav-bar.css';
+import Logo from './images/logo.svg';
 
-function NavBar() {
-    const providerDropdownRef = useRef(null);
-    const [isProviderDropdownActive, setIsProviderDropdownActive] = useState(false);
-    const onProviderDropdownClick = () => setIsProviderDropdownActive(!isProviderDropdownActive);
+/**
+ * @typedef NewsProviderObject
+ * {{
+ *     id: Number,
+ *     title: String
+ * }}
+ */
 
-    const mobileMenuRef = useRef(null);
-    const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
-    const onMobileMenuClick = () => setIsMobileMenuActive(!isMobileMenuActive);
-
+/**
+ * @param {Function} onMobileMenuClick
+ * @param {Boolean} isMobileMenuActive
+ * @param {Function} onProviderDropdownClick
+ * @param {Boolean} isProviderDropdownActive
+ * @param {[].<NewsProviderObject>} newsProviders
+ * @param {Function} onChangeProvider
+ * @returns {JSX.Element}
+ * @constructor
+ */
+function NavBarView({
+    onMobileMenuClick,
+    isMobileMenuActive,
+    onProviderDropdownClick,
+    isProviderDropdownActive,
+    newsProviders,
+    onChangeProvider
+}) {
     return (
         <nav className="bg-gray-800">
             <div className="mx-auto px-2 sm:px-6 lg:px-8">
@@ -19,7 +36,7 @@ function NavBar() {
                             type="button"
                             className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 focus:outline-none"
                             aria-controls="mobile-menu"
-                            aria-expanded="false"
+                            aria-expanded={isMobileMenuActive}
                             onClick={onMobileMenuClick}
                         >
                             <span className="sr-only">Open main menu</span>
@@ -32,7 +49,7 @@ function NavBar() {
                     </div>
                     <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                         <div className="flex-shrink-0 flex items-center">
-                            <img className="logo-svg" src="/static/logo.svg" alt="" width="36" height="36" />
+                            <img className="logo-svg" src={Logo} alt="" width="36" height="36" />
                         </div>
                         <div className="hidden sm:block sm:ml-6">
                             <div className="flex space-x-4">
@@ -53,22 +70,27 @@ function NavBar() {
                             <div>
                                 <button
                                     className="text-gray-300 text-sm font-medium bg-gray-800 flex text-sm rounded-full focus:outline-none focus:underline"
-                                    id="user-menu"
-                                    aria-haspopup="true"
+                                    id="user-menu-btn"
+                                    aria-controls="user-menu"
+                                    aria-expanded={isProviderDropdownActive}
                                     onClick={onProviderDropdownClick}>
                                     Ziņu avots
                                 </button>
                             </div>
                             <div
-                                ref={providerDropdownRef}
                                 className={`${isProviderDropdownActive ? '' : 'hidden'} origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5`}
                                 role="menu"
+                                id="user-menu"
                                 aria-orientation="vertical"
-                                aria-labelledby="user-menu">
-                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                   role="menuitem">LSM</a>
-                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                   role="menuitem">Delfi</a>
+                                aria-labelledby="user-menu-btn">
+                                {newsProviders.map(provider => (
+                                    <a
+                                        key={`news-provider--${provider.id}`}
+                                        href="#"
+                                        className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${provider.active ? 'font-bold' : ''}`}
+                                        role="menuitem"
+                                        onClick={onChangeProvider.bind(provider, provider.id)}>{provider.title}</a>
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -92,4 +114,4 @@ function NavBar() {
 }
 
 
-export default NavBar;
+export default NavBarView;
