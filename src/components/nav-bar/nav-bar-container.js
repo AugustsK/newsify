@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import NavBarView from "./nav-bar-view";
+import NavBarView from './nav-bar-view';
 
 const initialNewsProviders = [
-    {
-        id: 0,
-        title: 'LSM',
-        active: true
-    },
-    {
-        id: 1,
-        title: 'Delfi',
-        active: false
-    }
-]
+  {
+    id: 0,
+    title: 'LSM',
+    active: true,
+  },
+  {
+    id: 1,
+    title: 'Delfi',
+    active: false,
+  },
+];
 
 /**
  * NavBar
@@ -20,34 +20,39 @@ const initialNewsProviders = [
  * @constructor
  */
 function NavBar() {
-    const [isProviderDropdownActive, setIsProviderDropdownActive] = useState(false);
-    const onProviderDropdownClick = () => setIsProviderDropdownActive(!isProviderDropdownActive);
+  const [isProviderDropdownActive, setIsProviderDropdownActive] = useState(
+    false,
+  );
+  const onProviderDropdownClick = () => setIsProviderDropdownActive(!isProviderDropdownActive);
 
-    const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
-    const onMobileMenuClick = () => setIsMobileMenuActive(!isMobileMenuActive);
+  const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
+  const onMobileMenuClick = () => setIsMobileMenuActive(!isMobileMenuActive);
 
-    const [newsProviders, setNewsProviders] = useState([].concat(...initialNewsProviders));
-    const onChangeNewsProvider = (id) => {
-        const newArr = [].concat(...initialNewsProviders);
+  const [newsProviders, setNewsProviders] = useState(
+    [].concat(...initialNewsProviders),
+  );
+  const onChangeNewsProvider = (id) => {
+    const newArr = [].concat(...initialNewsProviders);
 
-        if (newArr.filter(provider => provider.id === id).length) {
-            newArr.forEach(provider => provider.active  = provider.id === id);
-        }
+    if (newArr.filter((provider) => provider.id === id).length) {
+      newArr.forEach((provider, index) => {
+        newArr[index].active = provider.id === id;
+      });
+    }
 
-        setNewsProviders(newArr);
-    };
+    setNewsProviders(newArr);
+  };
 
-    return (
-        <NavBarView
-            isProviderDropdownActive={isProviderDropdownActive}
-            onProviderDropdownClick={onProviderDropdownClick}
-            isMobileMenuActive={isMobileMenuActive}
-            onMobileMenuClick={onMobileMenuClick}
-            newsProviders={newsProviders}
-            onChangeProvider={onChangeNewsProvider}
-        />
-    )
+  return (
+    <NavBarView
+      isProviderDropdownActive={isProviderDropdownActive}
+      onProviderDropdownClick={onProviderDropdownClick}
+      isMobileMenuActive={isMobileMenuActive}
+      onMobileMenuClick={onMobileMenuClick}
+      newsProviders={newsProviders}
+      onChangeProvider={onChangeNewsProvider}
+    />
+  );
 }
-
 
 export default NavBar;

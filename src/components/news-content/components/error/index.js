@@ -1,2 +1,3 @@
-import Error from "./error-view";
+import Error from './error-view';
+
 export default Error;

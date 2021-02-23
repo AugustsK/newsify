@@ -1,2 +1,3 @@
-import ListView from "./list-view-view";
+import ListView from './list-view-view';
+
 export default ListView;

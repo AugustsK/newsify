@@ -1,2 +1,3 @@
-import Loader from "./loader-view";
+import Loader from './loader-view';
+
 export default Loader;
