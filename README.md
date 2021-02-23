@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-[![Actions Status](https://github.com/AugustsK/just-another-newsfeed/workflows/ci/badge.svg)](https://github.com/AugustsK/just-another-newsfeed/actions)
+[![Actions Status](https://github.com/AugustsK/just-another-newsfeed/workflows/Build/badge.svg)](https://github.com/AugustsK/just-another-newsfeed/actions)
 
 ## Available Scripts
 

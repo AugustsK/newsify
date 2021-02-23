@@ -64,25 +64,25 @@ function NavBarView({
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4">
                 <a
-                  href="#"
+                  href="https://www.lsm.lv/"
                   className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Dashboard
                 </a>
                 <a
-                  href="#"
+                  href="https://www.lsm.lv/"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Team
                 </a>
                 <a
-                  href="#"
+                  href="https://www.lsm.lv/"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Projects
                 </a>
                 <a
-                  href="#"
+                  href="https://www.lsm.lv/"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Calendar
@@ -115,7 +115,7 @@ function NavBarView({
                 {newsProviders.map((provider) => (
                   <a
                     key={`news-provider--${provider.id}`}
-                    href="#"
+                    href="https://www.lsm.lv/"
                     className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${
                       provider.active ? 'font-bold' : ''
                     }`}
@@ -137,25 +137,25 @@ function NavBarView({
       >
         <div className="px-2 pt-2 pb-3 space-y-1">
           <a
-            href="#"
+            href="https://www.lsm.lv/"
             className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Visas ziņas
           </a>
           <a
-            href="#"
+            href="https://www.lsm.lv/"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Popularakas
           </a>
           <a
-            href="#"
+            href="https://www.lsm.lv/"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Latvija
           </a>
           <a
-            href="#"
+            href="https://www.lsm.lv/"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Pasaule
