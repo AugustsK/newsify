@@ -1,4 +1,5 @@
 import { CHANGE_PROVIDER, CHANGE_LINK, CHANGE_VIEW } from './actionTypes';
+// eslint-disable-next-line no-unused-vars
 import { VIEW_TYPE_GRID, VIEW_TYPE_LIST } from '../repository/viewTypes';
 
 /**

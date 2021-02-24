@@ -29,15 +29,16 @@ const initialNewsProviders = [
  */
 function NavBar() {
   const [isProviderDropdownActive, setIsProviderDropdownActive] = useState(
-    false,
+    false
   );
-  const onProviderDropdownClick = () => setIsProviderDropdownActive(!isProviderDropdownActive);
+  const onProviderDropdownClick = () =>
+    setIsProviderDropdownActive(!isProviderDropdownActive);
 
   const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
   const onMobileMenuClick = () => setIsMobileMenuActive(!isMobileMenuActive);
 
   const [newsProviders, setNewsProviders] = useState(
-    [].concat(...initialNewsProviders),
+    [].concat(...initialNewsProviders)
   );
   const onChangeNewsProvider = (id) => {
     const newArr = [].concat(...initialNewsProviders);

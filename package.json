@@ -34,8 +34,13 @@
     "extends": [
       "airbnb/base",
       "airbnb/hooks",
-      "react-app"
-    ]
+      "react-app",
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error"
+    },
+    "plugins": ["prettier"]
   },
   "prettier": {
     "singleQuote": true
