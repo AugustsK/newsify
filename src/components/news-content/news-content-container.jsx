@@ -4,7 +4,6 @@ import GridView from './components/grid-view';
 import ListView from './components/list-view';
 import Loader from './components/loader';
 import Error from './components/error';
-// import { formatRelative, parse } from "date-fns";
 
 const loadNews = async () => {
   const response = await axios.get('/rss/?lang=lv&catid=14');

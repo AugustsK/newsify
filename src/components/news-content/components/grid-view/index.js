@@ -1,3 +1,3 @@
-import GridView from './grid-view-view';
+import GridView from './grid-view-view.jsx';
 
 export default GridView;

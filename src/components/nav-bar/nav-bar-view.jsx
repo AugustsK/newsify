@@ -4,8 +4,9 @@ import Logo from './images/logo.svg';
 /**
  * @typedef NewsProviderObject
  * {{
- *     id: Number,
- *     title: String
+ *     title: String,
+ *     current: Boolean,
+ *     feeds: Array
  * }}
  */
 
@@ -15,7 +16,7 @@ import Logo from './images/logo.svg';
  * @param {Function} onProviderDropdownClick
  * @param {Boolean} isProviderDropdownActive
  * @param {[].<NewsProviderObject>} newsProviders
- * @param {Function} onChangeProvider
+ * @param {Function} changeNewsProvider
  * @returns {JSX.Element}
  * @constructor
  */
@@ -25,8 +26,13 @@ function NavBarView({
   onProviderDropdownClick,
   isProviderDropdownActive,
   newsProviders,
-  onChangeProvider,
+  changeNewsProvider,
 }) {
+  /**
+   * @type {NewsProviderObject}
+   */
+  const currentProvider = newsProviders.find((provider) => provider.current);
+
   return (
     <nav className="bg-gray-800">
       <div className="mx-auto px-2 sm:px-6 lg:px-8">
@@ -63,30 +69,19 @@ function NavBarView({
             </div>
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4">
-                <a
-                  href="https://www.lsm.lv/"
-                  className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Dashboard
-                </a>
-                <a
-                  href="https://www.lsm.lv/"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Team
-                </a>
-                <a
-                  href="https://www.lsm.lv/"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Projects
-                </a>
-                <a
-                  href="https://www.lsm.lv/"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Calendar
-                </a>
+                {currentProvider.feeds.map((feed, index) => (
+                  <button
+                    key={`news-feed--${index}`}
+                    type="button"
+                    className={`${
+                      feed.current
+                        ? 'bg-gray-900 text-white'
+                        : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                    } px-3 py-2 rounded-md text-sm font-medium`}
+                  >
+                    {feed.label}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
@@ -112,18 +107,20 @@ function NavBarView({
                 aria-orientation="vertical"
                 aria-labelledby="user-menu-btn"
               >
-                {newsProviders.map((provider) => (
-                  <a
-                    key={`news-provider--${provider.id}`}
-                    href="https://www.lsm.lv/"
-                    className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ${
-                      provider.active ? 'font-bold' : ''
+                {newsProviders.map((provider, index) => (
+                  <button
+                    type="button"
+                    key={`news-provider--${index}`}
+                    className={`block w-full px-4 py-2 text-sm text-gray-700 text-left hover:bg-gray-100 ${
+                      provider.current ? 'font-bold' : ''
                     }`}
                     role="menuitem"
-                    onClick={onChangeProvider.bind(provider, provider.id)}
+                    onClick={(e) => {
+                      changeNewsProvider(index);
+                    }}
                   >
-                    {provider.title}
-                  </a>
+                    {provider.label}
+                  </button>
                 ))}
               </div>
             </div>
@@ -136,30 +133,19 @@ function NavBarView({
         id="mobile-menu"
       >
         <div className="px-2 pt-2 pb-3 space-y-1">
-          <a
-            href="https://www.lsm.lv/"
-            className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
-          >
-            Visas ziņas
-          </a>
-          <a
-            href="https://www.lsm.lv/"
-            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >
-            Popularakas
-          </a>
-          <a
-            href="https://www.lsm.lv/"
-            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >
-            Latvija
-          </a>
-          <a
-            href="https://www.lsm.lv/"
-            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-          >
-            Pasaule
-          </a>
+          {currentProvider.feeds.map((feed, index) => (
+            <button
+              key={`news-feed-mobile--${index}`}
+              type="button"
+              className={`${
+                feed.current
+                  ? 'bg-gray-900 text-white'
+                  : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+              } block w-full px-3 py-2 rounded-md text-sm font-medium`}
+            >
+              {feed.label}
+            </button>
+          ))}
         </div>
       </div>
     </nav>

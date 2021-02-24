@@ -1,3 +1,3 @@
-import NewsContent from './news-content-container';
+import NewsContent from './news-content-container.jsx';
 
 export default NewsContent;

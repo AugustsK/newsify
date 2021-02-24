@@ -1,3 +1,3 @@
-import Newsfeed from './newsfeed-view';
+import NewsFeed from './newsfeed-container.jsx';
 
-export default Newsfeed;
+export default NewsFeed;

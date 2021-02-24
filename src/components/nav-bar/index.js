@@ -1,3 +1,3 @@
-import NavBar from './nav-bar-container';
+import NavBar from './nav-bar-container.jsx';
 
 export default NavBar;

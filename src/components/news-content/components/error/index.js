@@ -1,3 +1,3 @@
-import Error from './error-view';
+import Error from './error-view.jsx';
 
 export default Error;
