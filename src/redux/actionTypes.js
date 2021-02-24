@@ -1,0 +1,3 @@
+export const CHANGE_PROVIDER = 'CHANGE_PROVIDER';
+export const CHANGE_LINK = 'CHANGE_LINK';
+export const CHANGE_VIEW = 'CHANGE_VIEW';

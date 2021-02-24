@@ -1,5 +1,13 @@
 import { useState } from 'react';
+import { connect } from 'react-redux';
 import NavBarView from './nav-bar-view';
+
+function mapStateToProps(state) {
+  return {
+    activeProvider: state.provider,
+    activeLink: state.link,
+  };
+}
 
 const initialNewsProviders = [
   {
@@ -55,4 +63,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default connect(mapStateToProps)(NavBar);

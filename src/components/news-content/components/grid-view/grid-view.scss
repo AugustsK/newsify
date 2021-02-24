@@ -1,0 +1,12 @@
+.news-item-card {
+  .transform-img {
+    transform: perspective(0) rotateX(0) scale(1);
+    transition: transform 0.26s ease-in-out;
+  }
+
+  &:hover {
+    .transform-img {
+      transform: perspective(1000px) rotateX(4deg) scale(1.02);
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import './nav-bar.css';
+import './nav-bar.scss';
 import Logo from './images/logo.svg';
 
 /**

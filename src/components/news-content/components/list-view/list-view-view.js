@@ -1,4 +1,4 @@
-import './list-view.css';
+import './list-view.scss';
 
 function ListView(props) {
   return (
