@@ -1,25 +1,30 @@
 import axios from 'axios';
-import { newsItemProps, NewsItem } from '../models/newsItem';
+import process from '../utils/rss-processor';
+import newsFeeds from '../structures/newsFeeds';
 
-const getNews = async (url = '/rss/?lang=lv&catid=14') => {
-  const response = await axios.get(url);
-  const items = [];
+const getNews = async (
+  feedUrl = newsFeeds[0].feeds[0].url,
+  provider = newsFeeds[0].code
+) => {
+  const url = `${window.location.protocol}//${window.location.hostname}:5000/backend`;
+  const response = await axios.post(
+    url,
+    {
+      feed: encodeURIComponent(feedUrl),
+    },
+    {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST',
+        'Access-Control-Allow-Headers':
+          'X-Requested-With, content-type, Authorization, XMLHttpRequest',
+      },
+    }
+  );
+
   const xml = new window.DOMParser().parseFromString(response.data, 'text/xml');
 
-  xml.querySelectorAll('item').forEach((item) => {
-    const props = { ...newsItemProps };
-    props.title = item.querySelector('title').innerHTML;
-    props.link = item.querySelector('link').innerHTML;
-    props.pubDate = item.querySelector('pubDate').innerHTML;
-    props.description = item.querySelector('description').innerHTML;
-    props.img = item
-      .querySelector('enclosure[type="image/jpeg"]')
-      .getAttribute('url');
-
-    items.push(new NewsItem(props));
-  });
-
-  return items;
+  return process(xml, provider);
 };
 
 export default getNews;

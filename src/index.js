@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Newsfeed from './components/newsfeed';
+import AppContainer from './components/app';
 import reportWebVitals from './reportWebVitals';
 import './index.scss';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Newsfeed />
+    <AppContainer />
   </React.StrictMode>,
   document.getElementById('root')
 );

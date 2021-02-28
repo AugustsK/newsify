@@ -1,0 +1,24 @@
+{
+  "name": "just-another-newsfeed-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AugustsK/just-another-newsfeed.git"
+  },
+  "author": "Augusts Karklins <augusts.karklins@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AugustsK/just-another-newsfeed/issues"
+  },
+  "homepage": "https://github.com/AugustsK/just-another-newsfeed#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}

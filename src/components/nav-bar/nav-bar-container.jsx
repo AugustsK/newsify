@@ -6,7 +6,7 @@ import NavBarView from './nav-bar-view.jsx';
  * @returns {JSX.Element}
  * @constructor
  */
-function NavBar({ newsProviders, changeNewsProvider }) {
+function NavBar({ newsProviders, changeNewsProvider, changeNewsFeed }) {
   const [isProviderDropdownActive, setIsProviderDropdownActive] = useState(
     false
   );
@@ -24,6 +24,7 @@ function NavBar({ newsProviders, changeNewsProvider }) {
       onMobileMenuClick={onMobileMenuClick}
       newsProviders={newsProviders}
       changeNewsProvider={changeNewsProvider}
+      changeNewsFeed={changeNewsFeed}
     />
   );
 }

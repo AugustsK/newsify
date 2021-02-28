@@ -17,6 +17,7 @@ import Logo from './images/logo.svg';
  * @param {Boolean} isProviderDropdownActive
  * @param {[].<NewsProviderObject>} newsProviders
  * @param {Function} changeNewsProvider
+ * @param {Function} changeNewsFeed
  * @returns {JSX.Element}
  * @constructor
  */
@@ -27,17 +28,21 @@ function NavBarView({
   isProviderDropdownActive,
   newsProviders,
   changeNewsProvider,
+  changeNewsFeed,
 }) {
+  const currentProviderIndex = newsProviders.findIndex(
+    (provider) => provider.current
+  );
   /**
    * @type {NewsProviderObject}
    */
-  const currentProvider = newsProviders.find((provider) => provider.current);
+  const currentProvider = newsProviders[currentProviderIndex];
 
   return (
-    <nav className="bg-gray-800">
+    <nav className="bg-gray-800 fixed w-full z-10 shadow-md">
       <div className="mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
-          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
             <button
               type="button"
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 focus:outline-none"
@@ -57,7 +62,7 @@ function NavBarView({
               </div>
             </button>
           </div>
-          <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+          <div className="flex-1 flex items-center justify-center lg:items-stretch lg:justify-start">
             <div className="flex-shrink-0 flex items-center">
               <img
                 className="logo-svg"
@@ -67,7 +72,7 @@ function NavBarView({
                 height="36"
               />
             </div>
-            <div className="hidden sm:block sm:ml-6">
+            <div className="hidden lg:block lg:ml-6">
               <div className="flex space-x-4">
                 {currentProvider.feeds.map((feed, index) => (
                   <button
@@ -78,6 +83,10 @@ function NavBarView({
                         ? 'bg-gray-900 text-white'
                         : 'text-gray-300 hover:bg-gray-700 hover:text-white'
                     } px-3 py-2 rounded-md text-sm font-medium`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      changeNewsFeed(currentProviderIndex, index);
+                    }}
                   >
                     {feed.label}
                   </button>
@@ -85,7 +94,7 @@ function NavBarView({
               </div>
             </div>
           </div>
-          <div className="absolute z-10 inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+          <div className="absolute z-10 inset-y-0 right-0 flex items-center pr-2 lg:static lg:inset-auto lg:ml-6 lg:pr-0">
             <div className="ml-3 relative">
               <div>
                 <button
@@ -116,6 +125,7 @@ function NavBarView({
                     }`}
                     role="menuitem"
                     onClick={(e) => {
+                      e.preventDefault();
                       changeNewsProvider(index);
                     }}
                   >
@@ -129,7 +139,7 @@ function NavBarView({
       </div>
 
       <div
-        className={`sm:hidden ${isMobileMenuActive ? '' : 'hidden'}`}
+        className={`lg:hidden ${isMobileMenuActive ? '' : 'hidden'}`}
         id="mobile-menu"
       >
         <div className="px-2 pt-2 pb-3 space-y-1">
@@ -142,6 +152,10 @@ function NavBarView({
                   ? 'bg-gray-900 text-white'
                   : 'text-gray-300 hover:bg-gray-700 hover:text-white'
               } block w-full px-3 py-2 rounded-md text-sm font-medium`}
+              onClick={(e) => {
+                e.preventDefault();
+                changeNewsFeed(currentProviderIndex, index);
+              }}
             >
               {feed.label}
             </button>

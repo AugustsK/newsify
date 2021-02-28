@@ -31,7 +31,8 @@ function GridView(props) {
             </div>
             <div className="absolute top-2 right-2 md:top-4 md:right-4">
               <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-                {item.pubDate}
+                <span className="relative-date">{item.pubDate}</span>
+                <span className="full-date">{item.fullDate}</span>
               </span>
             </div>
           </article>

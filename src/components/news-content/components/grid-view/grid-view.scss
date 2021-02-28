@@ -4,9 +4,19 @@
     transition: transform 0.26s ease-in-out;
   }
 
+  &:not(:hover) {
+    .full-date {
+      display: none;
+    }
+  }
+
   &:hover {
     .transform-img {
       transform: perspective(1000px) rotateX(4deg) scale(1.02);
+    }
+
+    .relative-date {
+      display: none;
     }
   }
 }
