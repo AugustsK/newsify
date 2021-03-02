@@ -4,7 +4,7 @@ import decodeHtml from './decode-html';
 import { NewsItem, newsItemProps } from '../models/newsItem';
 
 const getImage = (xmlItem) => {
-  let imgNode = xmlItem.querySelector('enclosure[type="image/jpeg"]');
+  let imgNode = xmlItem.querySelector('enclosure[url*=".jpg"]');
 
   if (!imgNode) {
     [imgNode] = xmlItem.getElementsByTagName('media:content');
