@@ -15,7 +15,7 @@ function AppView({
   return (
     <>
       <NavBar {...navBarProps} />
-      <div className="p-4 md:p-12">
+      <div className="p-4 pt-20 md:p-12 md:pt-16">
         {isLoading && <Loader />}
         {error && <Error message={error.message} />}
         {data && !isLoading && !error && <NewsContent data={data} />}

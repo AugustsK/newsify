@@ -10,11 +10,10 @@ function NavBar({ newsProviders, changeNewsProvider, changeNewsFeed }) {
   const [isProviderDropdownActive, setIsProviderDropdownActive] = useState(
     false
   );
-  const onProviderDropdownClick = () =>
-    setIsProviderDropdownActive(!isProviderDropdownActive);
+  const onProviderDropdownClick = (flag) => setIsProviderDropdownActive(!!flag);
 
   const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
-  const onMobileMenuClick = () => setIsMobileMenuActive(!isMobileMenuActive);
+  const onMobileMenuClick = (flag) => setIsMobileMenuActive(!!flag);
 
   return (
     <NavBarView

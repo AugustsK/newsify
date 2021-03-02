@@ -48,7 +48,10 @@ function NavBarView({
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 focus:outline-none"
               aria-controls="mobile-menu"
               aria-expanded={isMobileMenuActive}
-              onClick={onMobileMenuClick}
+              onClick={() => {
+                onProviderDropdownClick(false);
+                onMobileMenuClick(!isMobileMenuActive);
+              }}
             >
               <span className="sr-only">Open main menu</span>
               <div
@@ -102,7 +105,10 @@ function NavBarView({
                   id="user-menu-btn"
                   aria-controls="user-menu"
                   aria-expanded={isProviderDropdownActive}
-                  onClick={onProviderDropdownClick}
+                  onClick={() => {
+                    onMobileMenuClick(false);
+                    onProviderDropdownClick(!isProviderDropdownActive);
+                  }}
                 >
                   Ziņu avots
                 </button>
@@ -127,6 +133,7 @@ function NavBarView({
                     onClick={(e) => {
                       e.preventDefault();
                       changeNewsProvider(index);
+                      onProviderDropdownClick(false);
                     }}
                   >
                     {provider.label}
@@ -155,6 +162,7 @@ function NavBarView({
               onClick={(e) => {
                 e.preventDefault();
                 changeNewsFeed(currentProviderIndex, index);
+                onMobileMenuClick(false);
               }}
             >
               {feed.label}
