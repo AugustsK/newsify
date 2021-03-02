@@ -46,7 +46,10 @@ const process = (xml, provider) => {
     const props = { ...newsItemProps };
     props.title = decodeHtml(item.querySelector('title').innerHTML);
     props.link = item.querySelector('link').innerHTML;
-    const { fullDate, relativeDate, timestamp } = getPubDate(item, provider === 'lsm');
+    const { fullDate, relativeDate, timestamp } = getPubDate(
+      item,
+      provider === 'lsm'
+    );
     props.pubDate = relativeDate;
     props.fullDate = fullDate;
     props.timestamp = timestamp;
