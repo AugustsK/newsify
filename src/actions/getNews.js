@@ -8,7 +8,7 @@ const getNews = async (
 ) => {
   const url =
     process.env.REACT_APP_BACKEND_ULR ||
-    `${window.location.protocol}//${window.location.hostname}:500000/backend`;
+    `${window.location.protocol}//${window.location.hostname}:5000/fetch`;
   const response = await axios.post(
     url,
     {
