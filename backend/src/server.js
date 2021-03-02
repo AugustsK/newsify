@@ -3,7 +3,7 @@ const cors = require('cors');
 const axios = require('axios');
 
 const app = express();
-const port = 8080;
+const port = 5000;
 const allowedOrigins = ['http://localhost:3000', 'https://newsify.augusts.dev'];
 
 app.use(express.json());
@@ -22,7 +22,7 @@ app.use(
   })
 );
 
-app.post('/backend', (req, res) => {
+app.post('/fetch', (req, res) => {
   res.setHeader('content-type', 'application/rss+xml');
   axios.get(decodeURIComponent(req.body.feed)).then((response) => {
     res.send(response.data);
@@ -30,7 +30,7 @@ app.post('/backend', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.send('Ej prom -> <a href="https://neinterese.lv/">neinterese.lv</a>');
+  res.redirect('https://newsify.augusts.dev');
 });
 
 app.listen(port, () => {
