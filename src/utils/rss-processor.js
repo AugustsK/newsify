@@ -36,7 +36,7 @@ const getPubDate = (xmlItem, adjustTime) => {
   return { fullDate, relativeDate, timestamp };
 };
 
-const process = (xml, provider) => {
+const rssProcessor = (xml, provider) => {
   const items = [];
 
   xml.querySelectorAll('item').forEach((item) => {
@@ -68,4 +68,4 @@ const process = (xml, provider) => {
   return items;
 };
 
-export default process;
+export default rssProcessor;

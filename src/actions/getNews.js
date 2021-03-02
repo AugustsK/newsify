@@ -1,12 +1,14 @@
 import axios from 'axios';
-import process from '../utils/rss-processor';
+import rssProcessor from '../utils/rss-processor';
 import newsFeeds from '../structures/newsFeeds';
 
 const getNews = async (
   feedUrl = newsFeeds[0].feeds[0].url,
   provider = newsFeeds[0].code
 ) => {
-  const url = `${window.location.protocol}//${window.location.hostname}:5000/backend`;
+  const url =
+    process.env.REACT_APP_BACKEND_ULR ||
+    `${window.location.protocol}//${window.location.hostname}:500000/backend`;
   const response = await axios.post(
     url,
     {
@@ -24,7 +26,7 @@ const getNews = async (
 
   const xml = new window.DOMParser().parseFromString(response.data, 'text/xml');
 
-  return process(xml, provider);
+  return rssProcessor(xml, provider);
 };
 
 export default getNews;
