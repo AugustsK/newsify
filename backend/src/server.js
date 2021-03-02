@@ -24,9 +24,18 @@ app.use(
 
 app.post('/fetch', (req, res) => {
   res.setHeader('content-type', 'application/rss+xml');
-  axios.get(decodeURIComponent(req.body.feed)).then((response) => {
-    res.send(response.data);
-  });
+  axios
+    .get(decodeURIComponent(req.body.feed))
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.log('Fetch failed: ', error);
+      res.status(500).send({
+        message: error,
+      });
+    });
 });
 
 app.get('/', (req, res) => {
