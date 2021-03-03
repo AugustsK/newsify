@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAsync } from 'react-async';
+import pullToRefresh from 'mobile-pull-to-refresh/dist/pullToRefresh';
+import ptrAnimator from '../../utils/pull-to-refresh-animation';
 import getNews from '../../actions/getNews';
 import newsFeeds from '../../structures/newsFeeds';
 import AppView from './app-view.jsx';
@@ -56,6 +58,17 @@ function AppContainer() {
       run();
     }
   }, [newsProviders, run]);
+
+  pullToRefresh({
+    container: document.body,
+    animates: ptrAnimator,
+    refresh() {
+      return new Promise((resolve) => {
+        run();
+        resolve();
+      });
+    },
+  });
 
   const newsFeedViewProps = {
     newsProviders,

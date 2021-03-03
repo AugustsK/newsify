@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+const { isValidFeedUrl } = require('./utils');
+const Cache = require('./cache');
 
 const app = express();
 const port = 5000;
@@ -23,10 +25,24 @@ app.use(
 );
 
 app.post('/fetch', (req, res) => {
+  const feedUrl = decodeURIComponent(req.body.feed);
+
+  if (!isValidFeedUrl(feedUrl)) {
+    return res.status(400).send({
+      message: 'Url not allowed',
+    });
+  }
+
   res.setHeader('content-type', 'application/rss+xml');
+
+  if (Cache.get(feedUrl)) {
+    return res.send(Cache.get(feedUrl));
+  }
+
   axios
     .get(decodeURIComponent(req.body.feed))
     .then((response) => {
+      Cache.set(feedUrl, response.data);
       res.send(response.data);
     })
     .catch((error) => {
@@ -39,7 +55,7 @@ app.post('/fetch', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.redirect('https://newsify.augusts.dev');
+  res.status(301).redirect('https://newsify.augusts.dev');
 });
 
 app.listen(port, () => {
