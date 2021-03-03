@@ -26,7 +26,7 @@ const newsFeeds = [
       },
       {
         label: 'Pasaulē',
-        url: 'https://www.draugiem.lv/rss/?lang=lv&catid=21',
+        url: 'https://www.lsm.lv/rss/?lang=lv&catid=21',
         current: false,
       },
       {
