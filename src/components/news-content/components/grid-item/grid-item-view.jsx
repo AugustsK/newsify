@@ -6,7 +6,7 @@ function GridItem({ title, link, imgSrc, description, pubDate, fullDate }) {
       className="overflow-hidden rounded shadow-lg news-item-card relative"
       key={title}
     >
-      <div className="absolute top-2 right-2 md:top-4 md:right-4">
+      <div className="absolute z-10 top-2 right-2 md:top-4 md:right-4">
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
           <span className="relative-date">{pubDate}</span>
           <span className="full-date">{fullDate}</span>

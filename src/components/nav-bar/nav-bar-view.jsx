@@ -97,7 +97,7 @@ function NavBarView({
               </div>
             </div>
           </div>
-          <div className="absolute z-10 inset-y-0 right-0 flex items-center pr-2 lg:static lg:inset-auto lg:ml-6 lg:pr-0">
+          <div className="hidden absolute z-10 inset-y-0 right-0 flex items-center pr-2 lg:static lg:inset-auto lg:ml-6 lg:pr-0">
             <div className="ml-3 relative">
               <div>
                 <button
