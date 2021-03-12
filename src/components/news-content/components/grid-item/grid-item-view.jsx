@@ -4,6 +4,8 @@ function GridItem({ title, link, imgSrc, description, pubDate, fullDate }) {
   return (
     <article
       className="overflow-hidden rounded shadow-lg news-item-card relative"
+      role="region"
+      aria-label={title}
       key={title}
     >
       <div className="absolute z-10 top-2 right-2 md:top-4 md:right-4">
@@ -16,6 +18,7 @@ function GridItem({ title, link, imgSrc, description, pubDate, fullDate }) {
         href={link}
         className="block overflow-hidden"
         target="_blank"
+        title={title}
         rel="noreferrer"
       >
         <img
