@@ -23,7 +23,7 @@ const getPubDate = (xmlItem, adjustTime) => {
   const date = parse(strippedDate, 'dd LLL yyyy HH:mm:ss xx', new Date(), {
     weekStartsOn: 1,
   });
-  const adjustedDate = addHours(date, adjustTime ? 2 : 0);
+  const adjustedDate = addHours(date, adjustTime ? 1 : 0);
   const fullDate = format(adjustedDate, "do MMMM 'plkst.' HH:mm", {
     locale: lv,
     weekStartsOn: 1,
