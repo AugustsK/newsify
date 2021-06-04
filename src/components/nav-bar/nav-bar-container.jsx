@@ -7,9 +7,8 @@ import NavBarView from './nav-bar-view.jsx';
  * @constructor
  */
 function NavBar({ newsProviders, changeNewsProvider, changeNewsFeed }) {
-  const [isProviderDropdownActive, setIsProviderDropdownActive] = useState(
-    false
-  );
+  const [isProviderDropdownActive, setIsProviderDropdownActive] =
+    useState(false);
   const onProviderDropdownClick = (flag) => setIsProviderDropdownActive(!!flag);
 
   const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
